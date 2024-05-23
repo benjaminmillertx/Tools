@@ -1,4 +1,4 @@
-Contact Photo more_vert Creating a lie detector based on micro expressions is a complex task that involves not only building a neural network, but also developing a system for capturing and analyzing video footage of a person's face. Here's a high-level overview of how you might approach this task:
+Credit Benjamin Hunter Miller. Creating a lie detector based on micro expressions is a complex task that involves not only building a neural network, but also developing a system for capturing and analyzing video footage of a person's face. Here's a high-level overview of how you might approach this task:
 Capture video footage of a person's face. You'll need to use a webcam or other video capture device to record a person's facial expressions as they answer questions. You can use a library like OpenCV to capture and process the video footage.
 Here's an example of how you might capture video footage using OpenCV:
 OpenCVFrameGrabber grabber = new OpenCVFrameGrabber(0);
