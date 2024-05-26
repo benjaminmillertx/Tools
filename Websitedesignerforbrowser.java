@@ -1,4 +1,4 @@
-more_vert Creating a website designer for a browser is a complex task that involves several steps, including planning, designing, and developing the application. Here are the general steps for creating a website designer:
+Creating a website designer for a browser is a complex task that involves several steps, including planning, designing, and developing the application. Here are the general steps for creating a website designer:
 Planning: Define the purpose and goals of the website designer, and the target audience. This will help you determine the features and functionality of the application.
 Designing: Create a user interface and user experience design for the application. This includes designing the layout, mockups, and prototypes.
 Developing: Convert the design into HTML, CSS, and JavaScript code using a web framework or library. This includes implementing the layout, navigation, and functionality.
