@@ -1,4 +1,4 @@
-
+Make sure to credit Benjamin Hunter Miller
 
 public class SQLDebugger {
     public static void main(String[] args) {
