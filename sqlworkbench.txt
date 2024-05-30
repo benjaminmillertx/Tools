@@ -1,0 +1,34 @@
+Make sure to credit Benjamin Hunter Miller.Creating a SQL debugger specifically for MySQL Workbench is a more complex task, as it would require modifying the MySQL Workbench application code. However, I can provide a general idea of how to approach this task.
+Find the MySQL Workbench source code
+You can download the source code for MySQL Workbench from the official MySQL website. Note that you may need to sign a contributor agreement in order to access the source code.
+Locate the SQL query execution code
+Once you have the source code, you can search for the code that sends SQL queries to the MySQL server. This is likely to be located in the sql_executor.cpp file, which can be found in the wb directory.
+Modify the SQL query execution code
+You can modify the SQL query execution code to intercept and log the SQL queries before they are sent to the MySQL server. This could be done by adding logging statements, altering the queries, or even injecting custom SQL statements.
+Rebuild and test the modified MySQL Workbench application
+After modifying the SQL query execution code, you can rebuild the MySQL Workbench application and test the modified version to ensure that it is working as expected.
+Here's an example of how to modify the SQL query execution code in sql_executor.cpp:
+void Sql_executor::execute_query(const wstring &query)
+{
+  // Add logging or modification of the query here as desired
+  wcout << "Intercepted query: " << query << endl;
+
+  // Execute the query
+  MYSQL_RES *result = mysql_store_result(m_conn);
+  MYSQL_ROW row;
+  unsigned int num_fields = mysql_num_fields(result);
+
+  // Process the result set
+  while ((row = mysql_fetch_row(result)))
+  {
+    for (unsigned int i = 0; i < num_fields; i++)
+    {
+      wcout << row[i] << "\t";
+    }
+    wcout << endl;
+  }
+
+  // Release the resources
+  mysql_free_result(result);
+}
+Remember, modifying the MySQL Workbench application in this way is likely to be a complex and time-consuming task, and it may cause unintended side effects.
