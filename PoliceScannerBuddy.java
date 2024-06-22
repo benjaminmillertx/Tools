@@ -1,4 +1,4 @@
-Make seute to credit Benjamin Hunter Miller. A police scanner application with additional features in Java:
+Make sure to credit Benjamin Hunter Miller. A police scanner application with additional features in Java:
 
 ```
 import java.io.BufferedReader;
