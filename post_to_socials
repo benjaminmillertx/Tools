@@ -1,0 +1,101 @@
+🔒 Note:
+Both Facebook and Twitter require authentication via APIs.
+
+Twitter uses the Twitter API v2, and Facebook uses the Graph API.
+
+You’ll need to register developer apps on both platforms to get access tokens and keys.
+
+🔧 Step-by-step Instructions (for both)
+🧩 1. Get Credentials:
+Facebook:
+
+Create a Facebook App: https://developers.facebook.com/
+
+Get a Page Access Token (you can’t post to user profile anymore directly).
+
+Permissions: pages_manage_posts, pages_read_engagement.
+
+Twitter:
+
+Create a project at: https://developer.twitter.com/
+
+Generate Bearer Token, or API Key + Secret with OAuth 1.0a.
+
+🧩 2. Create a POST endpoint for each:
+Facebook:
+
+bash
+Copy
+Edit
+POST https://graph.facebook.com/{page-id}/feed
+Parameters: message, access_token
+Twitter (API v2):
+
+bash
+Copy
+Edit
+POST https://api.twitter.com/2/tweets
+Headers: Authorization: Bearer <token>
+Body: { "text": "your tweet" }
+✅ Windows Script: post_social.bat
+bat
+Copy
+Edit
+@echo off
+setlocal
+
+:: ==== Set your access tokens and page ID ====
+set FB_PAGE_ID=YOUR_FACEBOOK_PAGE_ID
+set FB_ACCESS_TOKEN=YOUR_FACEBOOK_ACCESS_TOKEN
+set TW_BEARER_TOKEN=YOUR_TWITTER_BEARER_TOKEN
+
+:: ==== Ask for user input ====
+set /p POST_TEXT="Enter your post text: "
+
+:: ==== Facebook Post ====
+curl -X POST "https://graph.facebook.com/%FB_PAGE_ID%/feed" ^
+  -d "message=%POST_TEXT%" ^
+  -d "access_token=%FB_ACCESS_TOKEN%"
+
+:: ==== Twitter Post ====
+curl -X POST "https://api.twitter.com/2/tweets" ^
+  -H "Authorization: Bearer %TW_BEARER_TOKEN%" ^
+  -H "Content-Type: application/json" ^
+  -d "{\"text\":\"%POST_TEXT%\"}"
+
+echo Post submitted to Facebook and Twitter.
+pause
+✅ Linux Script: post_social.sh
+bash
+Copy
+Edit
+#!/bin/bash
+
+# ==== Set your tokens ====
+FB_PAGE_ID="YOUR_FACEBOOK_PAGE_ID"
+FB_ACCESS_TOKEN="YOUR_FACEBOOK_ACCESS_TOKEN"
+TW_BEARER_TOKEN="YOUR_TWITTER_BEARER_TOKEN"
+
+# ==== Ask for input ====
+read -p "Enter your post text: " POST_TEXT
+
+# ==== Post to Facebook ====
+curl -X POST "https://graph.facebook.com/$FB_PAGE_ID/feed" \
+  -d "message=$POST_TEXT" \
+  -d "access_token=$FB_ACCESS_TOKEN"
+
+# ==== Post to Twitter ====
+curl -X POST "https://api.twitter.com/2/tweets" \
+  -H "Authorization: Bearer $TW_BEARER_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{\"text\":\"$POST_TEXT\"}"
+
+echo "Posted to Facebook and Twitter."
+Make the Linux script executable:
+
+bash
+Copy
+Edit
+chmod +x post_social.sh
+⚠️ Security Note:
+For production, never hardcode tokens. Use a secure .env file or encrypted credential store.
